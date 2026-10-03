@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shopx.frontend.controller.CatalogController">
+    <!-- Top Navigation Bar -->
+    <top>
+        <VBox spacing="0.0">
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="16.0" styleClass="top-bar">
+                    <children>
+                        <!-- Brand Text Logo acting as Home Button -->
+                        <Button mnemonicParsing="false" onAction="#handleHomeLogoClick" styleClass="brand-logo-btn">
+                            <graphic>
+                                <HBox alignment="CENTER" spacing="2.0">
+                                    <children>
+                                        <Label styleClass="brand-title" text="Shop" />
+                                        <Label styleClass="brand-accent" text="X" />
+                                    </children>
+                                </HBox>
+                            </graphic>
+                        </Button>
+
+                        <Region HBox.hgrow="ALWAYS" />
+
+                        <!-- User Info -->
+                        <Label fx:id="userGreetingLabel" style="-fx-font-weight: bold; -fx-text-fill: #f1f5f9;" text="Hello, Customer" />
+
+                        <!-- Admin Panel Button (Visible for Admins / Switch to Seller Mode) -->
+                        <Button fx:id="adminPanelButton" mnemonicParsing="false" onAction="#openAdminPanel" styleClass="btn-admin" text="⚙ Admin Panel" />
+
+                        <!-- Refresh -->
+                        <Button mnemonicParsing="false" onAction="#loadCatalogData" styleClass="btn-secondary" text="↻ Refresh" />
+
+                        <!-- Cart Button -->
+                        <Button fx:id="cartButton" mnemonicParsing="false" onAction="#openCart" styleClass="btn-cart" text="🛒 Cart (0)" />
+
+                        <!-- Logout -->
+                        <Button mnemonicParsing="false" onAction="#handleLogout" styleClass="btn-secondary" text="Sign Out" />
+                    </children>
+                </HBox>
+
+                <!-- Filter / Search Toolbar -->
+                <HBox alignment="CENTER_LEFT" spacing="16.0" style="-fx-background-color: #ffffff; -fx-padding: 10px 24px; -fx-border-color: transparent transparent #e2e8f0 transparent; -fx-border-width: 0 0 1px 0;">
+                    <children>
+                        <Label style="-fx-font-weight: bold; -fx-text-fill: #475569;" text="Filter Products:" />
+                        <TextField fx:id="searchField" prefWidth="280.0" promptText="Search products by name or description..." />
+                        <ComboBox fx:id="categoryComboBox" prefWidth="200.0" promptText="All Categories" />
+                    </children>
+                </HBox>
+
+                <!-- Notification Banner -->
+                <Label fx:id="notificationLabel" maxWidth="1.7976931348623157E308" visible="false" />
+            </children>
+        </VBox>
+    </top>
+
+    <!-- Center Product Grid -->
+    <center>
+        <StackPane>
+            <children>
+                <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-padding: 16px;">
+                    <content>
+                        <FlowPane fx:id="productGrid" hgap="16.0" vgap="16.0" prefWrapLength="1020.0">
+                            <padding>
+                                <Insets bottom="24.0" left="12.0" right="12.0" top="12.0" />
+                            </padding>
+                        </FlowPane>
+                    </content>
+                </ScrollPane>
+
+                <!-- Loading Indicator -->
+                <ProgressIndicator fx:id="loadingIndicator" maxHeight="40.0" maxWidth="40.0" visible="false" />
+
+                <!-- Empty State -->
+                <Label fx:id="emptyStateLabel" style="-fx-font-size: 16px; -fx-text-fill: #94a3b8; -fx-font-weight: bold;" text="No products found matching your search." visible="false" />
+            </children>
+        </StackPane>
+    </center>
+
+    <!-- Pagination Bar -->
+    <bottom>
+        <HBox alignment="CENTER" spacing="16.0" style="-fx-background-color: #ffffff; -fx-border-color: #e2e8f0 transparent transparent transparent; -fx-border-width: 1 0 0 0; -fx-padding: 12 24;">
+            <children>
+                <Button fx:id="prevPageButton" mnemonicParsing="false" onAction="#prevPage" styleClass="btn-secondary" text="← Previous" />
+                <Label fx:id="pageInfoLabel" style="-fx-font-weight: bold; -fx-text-fill: #475569;" text="Page 1 of 1" />
+                <Button fx:id="nextPageButton" mnemonicParsing="false" onAction="#nextPage" styleClass="btn-secondary" text="Next →" />
+            </children>
+        </HBox>
+    </bottom>
+</BorderPane>

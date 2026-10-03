@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #f8fafc;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shopx.frontend.controller.RoleSelectController">
+    <children>
+        <VBox alignment="CENTER" maxWidth="620.0" spacing="28.0" styleClass="card">
+            <padding>
+                <Insets bottom="44.0" left="40.0" right="40.0" top="40.0" />
+            </padding>
+            <children>
+                <!-- Text-based Simple Brand Logo Header -->
+                <VBox alignment="CENTER" spacing="6.0">
+                    <children>
+                        <HBox alignment="CENTER" spacing="4.0">
+                            <children>
+                                <Label styleClass="brand-title-dark" text="Shop" />
+                                <Label styleClass="brand-title-dark, brand-accent" text="X" />
+                            </children>
+                        </HBox>
+                        <Label styleClass="subtitle" text="E-Commerce Order &amp; Inventory Management Platform" />
+                    </children>
+                </VBox>
+
+                <!-- Prompt -->
+                <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1e293b;" text="Select Account Type to Continue" />
+
+                <!-- Two Role Cards -->
+                <HBox alignment="CENTER" spacing="20.0">
+                    <children>
+                        <!-- Customer Portal Option -->
+                        <VBox fx:id="customerRoleCard" alignment="CENTER" maxWidth="260.0" minWidth="240.0" spacing="14.0" styleClass="role-card" onMouseClicked="#selectCustomerRole">
+                            <children>
+                                <Label style="-fx-font-size: 36px;" text="🛒" />
+                                <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #0f172a;" text="Customer Portal" />
+                                <Label alignment="CENTER" style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Browse catalog, manage shopping cart, and place orders." textAlignment="CENTER" wrapText="true" />
+                                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#selectCustomerRole" styleClass="btn-primary" text="Customer Sign In →" />
+                            </children>
+                        </VBox>
+
+                        <!-- Admin Portal Option -->
+                        <VBox fx:id="adminRoleCard" alignment="CENTER" maxWidth="260.0" minWidth="240.0" spacing="14.0" styleClass="role-card" onMouseClicked="#selectAdminRole">
+                            <children>
+                                <Label style="-fx-font-size: 36px;" text="⚙" />
+                                <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #0f172a;" text="Admin &amp; Seller" />
+                                <Label alignment="CENTER" style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="Add new products to sell, manage inventory and stock levels." textAlignment="CENTER" wrapText="true" />
+                                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#selectAdminRole" styleClass="btn-admin" text="Admin Sign In →" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <!-- Academic Viva / Demo Credentials Helper -->
+                <VBox alignment="CENTER" spacing="4.0" style="-fx-background-color: #f1f5f9; -fx-padding: 12px 18px; -fx-background-radius: 8px;">
+                    <children>
+                        <Label style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #334155;" text="Demo Accounts Ready" />
+                        <Label style="-fx-font-size: 11px; -fx-text-fill: #64748b;" text="Customer: shashank@shopx.local  |  Admin: admin@shopx.local  |  Pass: ShopX@123 / Admin@123" />
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </children>
+</StackPane>

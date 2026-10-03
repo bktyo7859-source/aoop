@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #f8fafc;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shopx.frontend.controller.LoginController">
+    <children>
+        <VBox alignment="CENTER" maxWidth="440.0" spacing="20.0" styleClass="card">
+            <padding>
+                <Insets bottom="36.0" left="36.0" right="36.0" top="36.0" />
+            </padding>
+            <children>
+                <!-- Back to Role Select -->
+                <HBox alignment="CENTER_LEFT">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#handleBackToRoleSelect" styleClass="btn-secondary-light" text="← Back" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label fx:id="roleBadgeLabel" styleClass="role-badge" text="CUSTOMER LOGIN" />
+                    </children>
+                </HBox>
+
+                <!-- Branding Header -->
+                <VBox alignment="CENTER" spacing="6.0">
+                    <children>
+                        <HBox alignment="CENTER" spacing="4.0">
+                            <children>
+                                <Label styleClass="brand-title-dark" text="Shop" />
+                                <Label styleClass="brand-title-dark, brand-accent" text="X" />
+                            </children>
+                        </HBox>
+                        <Label fx:id="portalSubtitleLabel" styleClass="subtitle" text="Customer Order &amp; Cart Access" />
+                    </children>
+                </VBox>
+
+                <!-- Status / Error Notification -->
+                <Label fx:id="errorLabel" maxWidth="1.7976931348623157E308" styleClass="notification-error" text="Invalid credentials" visible="false" wrapText="true" />
+
+                <!-- Input Fields -->
+                <VBox spacing="14.0">
+                    <children>
+                        <VBox spacing="6.0">
+                            <children>
+                                <Label style="-fx-font-weight: bold; -fx-text-fill: #334155;" text="Email Address" />
+                                <TextField fx:id="emailField" promptText="Enter your email..." />
+                            </children>
+                        </VBox>
+                        <VBox spacing="6.0">
+                            <children>
+                                <Label style="-fx-font-weight: bold; -fx-text-fill: #334155;" text="Password" />
+                                <PasswordField fx:id="passwordField" promptText="••••••••" onAction="#handleLogin" />
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
+
+                <!-- Login Button & Spinner -->
+                <VBox alignment="CENTER" spacing="12.0">
+                    <children>
+                        <Button fx:id="loginButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleLogin" styleClass="btn-primary" text="Sign In" />
+                        <ProgressIndicator fx:id="progressIndicator" maxHeight="28.0" maxWidth="28.0" visible="false" />
+                    </children>
+                </VBox>
+
+                <!-- Demo Hint Box -->
+                <VBox alignment="CENTER" spacing="4.0" style="-fx-background-color: #f8fafc; -fx-padding: 10px; -fx-background-radius: 6px; -fx-border-color: #e2e8f0; -fx-border-radius: 6px;">
+                    <children>
+                        <Label fx:id="hintTitleLabel" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #475569;" text="Demo Credentials" />
+                        <Label fx:id="hintCredsLabel" style="-fx-font-size: 11px; -fx-text-fill: #64748b;" text="Email: shashank@shopx.local  |  Pass: ShopX@123" />
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </children>
+</StackPane>

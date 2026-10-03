@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shopx.frontend.controller.AdminController">
+    <!-- Top Navigation Bar with Clickable Text Logo Home Button -->
+    <top>
+        <VBox spacing="0.0">
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="16.0" styleClass="top-bar">
+                    <children>
+                        <!-- Clickable Text-Based Brand Logo acting as Home Button -->
+                        <Button mnemonicParsing="false" onAction="#handleHomeNavigation" styleClass="brand-logo-btn">
+                            <graphic>
+                                <HBox alignment="CENTER" spacing="2.0">
+                                    <children>
+                                        <Label styleClass="brand-title" text="Shop" />
+                                        <Label styleClass="brand-accent" text="X" />
+                                    </children>
+                                </HBox>
+                            </graphic>
+                        </Button>
+
+                        <Label style="-fx-font-size: 11px; -fx-text-fill: #94a3b8; -fx-padding: 0 0 0 4px;" text="ADMIN PORTAL" />
+
+                        <Region HBox.hgrow="ALWAYS" />
+
+                        <!-- User Info -->
+                        <Label fx:id="adminGreetingLabel" style="-fx-font-weight: bold; -fx-text-fill: #f1f5f9;" text="Hello, Administrator" />
+
+                        <!-- Switch to Customer Store -->
+                        <Button mnemonicParsing="false" onAction="#handleHomeNavigation" styleClass="btn-secondary" text="🛒 View Customer Store" />
+
+                        <!-- Sign Out -->
+                        <Button mnemonicParsing="false" onAction="#handleLogout" styleClass="btn-secondary" text="Sign Out" />
+                    </children>
+                </HBox>
+
+                <!-- Notification Banner -->
+                <Label fx:id="notificationLabel" maxWidth="1.7976931348623157E308" visible="false" />
+            </children>
+        </VBox>
+    </top>
+
+    <!-- Main Content: Product Creation Form & Tips -->
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
+            <content>
+                <HBox alignment="TOP_CENTER" spacing="28.0">
+                    <padding>
+                        <Insets bottom="36.0" left="36.0" right="36.0" top="28.0" />
+                    </padding>
+                    <children>
+                        <!-- Product Creation Card -->
+                        <VBox maxWidth="560.0" spacing="18.0" styleClass="card" HBox.hgrow="ALWAYS">
+                            <children>
+                                <VBox spacing="4.0">
+                                    <children>
+                                        <Label styleClass="section-title" text="Add New Product to Store" />
+                                        <Label styleClass="subtitle" text="Create a new item and publish it directly to the customer catalog." />
+                                    </children>
+                                </VBox>
+
+                                <!-- Product Name -->
+                                <VBox spacing="6.0">
+                                    <children>
+                                        <Label style="-fx-font-weight: bold; -fx-text-fill: #334155;" text="Product Title / Name *" />
+                                        <TextField fx:id="productNameField" promptText="e.g. Wireless Noise-Canceling Headphones" />
+                                    </children>
+                                </VBox>
+
+                                <!-- Category Selection -->
+                                <VBox spacing="6.0">
+                                    <children>
+                                        <Label style="-fx-font-weight: bold; -fx-text-fill: #334155;" text="Product Category *" />
+                                        <ComboBox fx:id="categoryComboBox" maxWidth="1.7976931348623157E308" promptText="Select Category" />
+                                    </children>
+                                </VBox>
+
+                                <!-- Price and Stock Quantity -->
+                                <HBox spacing="16.0">
+                                    <children>
+                                        <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                                            <children>
+                                                <Label style="-fx-font-weight: bold; -fx-text-fill: #334155;" text="Unit Price (₹) *" />
+                                                <TextField fx:id="productPriceField" promptText="e.g. 79.99" />
+                                            </children>
+                                        </VBox>
+                                        <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                                            <children>
+                                                <Label style="-fx-font-weight: bold; -fx-text-fill: #334155;" text="Initial Stock Quantity *" />
+                                                <TextField fx:id="stockQuantityField" promptText="e.g. 25" />
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </HBox>
+
+                                <!-- Description -->
+                                <VBox spacing="6.0">
+                                    <children>
+                                        <Label style="-fx-font-weight: bold; -fx-text-fill: #334155;" text="Product Description" />
+                                        <TextArea fx:id="descriptionArea" prefRowCount="3" promptText="Detailed description of features, materials, and warranty..." wrapText="true" />
+                                    </children>
+                                </VBox>
+
+                                <!-- Submit Button and Spinner -->
+                                <HBox alignment="CENTER_LEFT" spacing="16.0">
+                                    <children>
+                                        <Button fx:id="addProductButton" mnemonicParsing="false" onAction="#handleAddProduct" styleClass="btn-primary" text="+ Add Product to Catalog" />
+                                        <Button mnemonicParsing="false" onAction="#handleClearForm" styleClass="btn-secondary-light" text="Clear Form" />
+                                        <ProgressIndicator fx:id="loadingIndicator" maxHeight="24.0" maxWidth="24.0" visible="false" />
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+
+                        <!-- Right Information / Summary Card -->
+                        <VBox maxWidth="360.0" minWidth="300.0" spacing="18.0" styleClass="card">
+                            <children>
+                                <Label styleClass="section-title" text="ℹ Seller Quick Guide" />
+                                <VBox spacing="12.0" style="-fx-text-fill: #475569;">
+                                    <children>
+                                        <VBox spacing="4.0">
+                                            <children>
+                                                <Label style="-fx-font-weight: bold; -fx-text-fill: #1e293b;" text="● Instant Catalog Availability" />
+                                                <Label style="-fx-font-size: 11px; -fx-text-fill: #64748b;" text="Once submitted, the item is instantly stored in PostgreSQL and displayed on Page 1 of the catalog." wrapText="true" />
+                                            </children>
+                                        </VBox>
+                                        <VBox spacing="4.0">
+                                            <children>
+                                                <Label style="-fx-font-weight: bold; -fx-text-fill: #1e293b;" text="● Live Inventory Tracking" />
+                                                <Label style="-fx-font-size: 11px; -fx-text-fill: #64748b;" text="Inventory records and transactions are automatically linked so customers can add the item to cart and purchase it immediately." wrapText="true" />
+                                            </children>
+                                        </VBox>
+                                        <VBox spacing="4.0">
+                                            <children>
+                                                <Label style="-fx-font-weight: bold; -fx-text-fill: #1e293b;" text="● Logo as Home Button" />
+                                                <Label style="-fx-font-size: 11px; -fx-text-fill: #64748b;" text="Click the 'ShopX' text logo at the top-left anytime to return to the catalog home view." wrapText="true" />
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </VBox>
+
+                                <Region VBox.vgrow="ALWAYS" />
+
+                                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleHomeNavigation" styleClass="btn-secondary-light" text="← Go to Customer Catalog" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>

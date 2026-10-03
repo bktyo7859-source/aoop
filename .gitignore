@@ -1,0 +1,27 @@
+# Node / Web Build
+node_modules/
+dist/
+.vite/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Java / Maven Build
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.log
+run.log
+
+# IDE & Editor files
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# OS files
+.DS_Store
+Thumbs.db
