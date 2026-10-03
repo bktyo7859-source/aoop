@@ -43,10 +43,31 @@ export default function Home() {
           paddingTop: 'clamp(2rem, 5vw, 4rem)',
           paddingBottom: '2.5rem',
           borderBottom: '1px solid var(--border-hairline)',
-          backgroundColor: '#fbfbfa'
+          backgroundColor: '#fbfbfa',
+          overflow: 'hidden'
         }}
       >
-        <div className="shopcx-container" style={{ width: '100%', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            zIndex: 0,
+            pointerEvents: 'none'
+          }}
+        >
+          <source src="/hero-video.mp4" type="video/mp4" />
+        </video>
+
+        <div className="shopcx-container" style={{ position: 'relative', zIndex: 1, width: '100%', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           {/* Tagline */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '1.5rem' }}>
             <span
