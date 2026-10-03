@@ -27,6 +27,11 @@ A complete frontend redesign and upgrade transforming ShopX into **ShopCX**: a l
    - **Patron Portal & Order Ledger**: Instant 1-click demo accounts (`shashank@shopx.local` / `ShopX@123`), registration, and order item modal inspector.
    - **Interactive Custom Cursor**: Desktop cursor follower with contextual hover states (`VIEW`, `EXPLORE`, `+ ADD`, magnetic buttons).
 
+4. **Production Parity & Vercel Zero-Config Deployment**:
+   - **SPA Routing Rewrites**: `vercel.json` included at both the repository root and `ShopX/web/` ensuring direct URL access (e.g. `/shop`, `/product/1`, `/checkout`) and browser refresh never 404.
+   - **Dynamic API Base URL**: `VITE_API_BASE_URL` support for external backend host integration with fallback handling for unconfigured environments.
+   - **Resilient Fallback Engine**: Seamless client-side dataset fallback matching database categories, products, persistent cart, and order history so the Vercel deployment is 100% functional out-of-the-box.
+
 ---
 
 ## ✦ Project Directory Structure
@@ -34,6 +39,7 @@ A complete frontend redesign and upgrade transforming ShopX into **ShopCX**: a l
 ```
 spx/
 ├── README.md                 # Root documentation & architecture guide
+├── vercel.json               # Vercel SPA routing & build configuration for root deploys
 ├── .gitignore                # Global build & artifact exclusions
 └── ShopX/
     ├── backend/              # Spring Boot Java 21 REST API (Port 8080)
@@ -47,12 +53,14 @@ spx/
     │       └── service/      # Transactional Business Logic
     ├── web/                  # ShopCX React 19 + Vite Web Frontend (Port 5173)
     │   ├── index.html        # Typography links & SEO metadata
+    │   ├── vercel.json       # Vercel configuration for web subfolder deploys
     │   ├── vite.config.js    # Reverse proxy to http://localhost:8080
+    │   ├── .env.example      # Environment variable reference
     │   └── src/
     │       ├── components/   # Header, Footer, CustomCursor, CartDrawer, SearchModal, ProductCard...
     │       ├── context/      # AuthContext, CartContext, WishlistContext, ToastContext
     │       ├── pages/        # Home, Shop, Collections, ProductDetail, Cart, Checkout, Account, Orders...
-    │       ├── services/     # REST API service layer
+    │       ├── services/     # REST API service layer & fallback engine
     │       └── utils/        # Editorial Image curation engine
     ├── frontend/             # Original JavaFX desktop application
     └── SHOPX_DATABASE/       # PostgreSQL schema & CSV migration scripts (32,950+ rows)
@@ -60,7 +68,21 @@ spx/
 
 ---
 
-## ✦ How to Run the Application
+## ✦ Vercel Deployment Instructions
+
+### Method A: Deploy from GitHub (Recommended)
+1. Import repository `https://github.com/bktyo7859-source/aoop.git` into **Vercel**.
+2. **Root Directory**: Select `ShopX/web` (or leave default if deploying root monorepo).
+3. **Framework Preset**: `Vite`
+4. **Build Command**: `npm run build`
+5. **Output Directory**: `dist`
+6. **Environment Variables** *(Optional)*:
+   - `VITE_API_BASE_URL`: `https://your-backend-domain.com/api` (if deploying the Java backend to Render/Railway).
+7. Click **Deploy**.
+
+---
+
+## ✦ How to Run Locally
 
 ### Prerequisites
 - **Java 21 LTS** & **PostgreSQL 18**
